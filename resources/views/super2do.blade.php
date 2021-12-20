@@ -3,23 +3,23 @@
 <div class="wrapper">
 
   <!-- MODAL AREA -->
-    <!-- Modal --> 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
-        <div id="lebar" class="modal-dialog modal-md">   
-            <div class="modal-content"> 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="lebar" class="modal-dialog modal-md">
+            <div class="modal-content">
                 <form  method="post" action="#" enctype="multipart/form-data" id="form-edit" class="form-horizontal">
                 {{ csrf_field() }}
-                <div class="modal-header"> 
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add To Do List</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button> 
-                </div> 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                </div>
                 <div id="body" class="modal-body">
-                    <div class="box-body table-responsive">    
+                    <div class="box-body table-responsive">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Title</label>
                                 <input type="text" id="title" name="title" class="form-control input-sm" placeholder="" value="">
                         </div>
-                        
+
                          <div class="form-group">
                             <label class="col-sm-12 control-label">Waktu</label>
                              <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -30,18 +30,17 @@
                             </div>
                           </div>
 
-                    </div> 
-                </div> 
-                <div class="modal-footer"> 
+                    </div>
+                </div>
+                <div class="modal-footer">
                     <button id="submit" type="submit" value="save" class="btn btn-info">Save</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button> 
-                </div> 
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
                 </form>
-            </div> 
-        </div> 
+            </div>
+        </div>
     </div>
     <!---- END OF MODAL AREA -->
-
   <div class="col-lg-8" style="margin: 0 auto;">
     <!-- TO DO List -->
             <br><br>
@@ -65,6 +64,8 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <ul class="todo-list" data-widget="todo-list">
+                @if(!empty($data))
+                @foreach($data as $item)
                   <li>
                     <div class="row">
                       <div style="margin-top: 15px;">
@@ -80,11 +81,11 @@
                       </div>
                       <!-- todo text -->
                       <div class="col-sm-10">
-                        <span class="text">Design a nice theme</span>
+                        <span class="text">{{ $item->title }}</span>
                         <!-- Emphasis label -->
-                        <small class="badge badge-primary">ACTIVE</small>
+                        <small class="badge badge-primary">{{ $item->status == 1 ? 'ACTIVE' : 'COMPLETED' }}</small>
                         <br>
-                        <span style="font-size: 12px;"> - 20 Dec 2021 </span>
+                        <span style="font-size: 12px;"> {{ $item->time }} - {{ $item->date }} </span>
                       </div>
                       <div class="tools" style="margin-top: 15px;">
                         <i class="fas fa-edit"></i>
@@ -92,111 +93,8 @@
                       </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="row">
-                      <div style="margin-top: 15px;">
-                        <span class="handle">
-                          <i class="fas fa-ellipsis-v"></i>
-                          <i class="fas fa-ellipsis-v"></i>
-                        </span>
-                        <!-- checkbox -->
-                        <div  class="icheck-primary d-inline ml-2">
-                          <input type="checkbox" value="" name="todo1" id="todoCheck2">
-                          <label for="todoCheck2"></label>
-                        </div>
-                      </div>
-                      <!-- todo text -->
-                      <div class="col-sm-10">
-                        <span class="text">Design a nice theme</span>
-                        <!-- Emphasis label -->
-                        <small class="badge badge-primary">ACTIVE</small>
-                        <br>
-                        <span style="font-size: 12px;"> - 20 Dec 2021 </span>
-                      </div>
-                      <div class="tools" style="margin-top: 15px;">
-                        <i class="fas fa-edit"></i>
-                        <i class="far fa-trash-alt"></i>
-                      </div>
-                    </div>
-                  </li><li>
-                    <div class="row">
-                      <div style="margin-top: 15px;">
-                        <span class="handle">
-                          <i class="fas fa-ellipsis-v"></i>
-                          <i class="fas fa-ellipsis-v"></i>
-                        </span>
-                        <!-- checkbox -->
-                        <div  class="icheck-primary d-inline ml-2">
-                          <input type="checkbox" value="" name="todo1" id="todoCheck3">
-                          <label for="todoCheck3"></label>
-                        </div>
-                      </div>
-                      <!-- todo text -->
-                      <div class="col-sm-10">
-                        <span class="text">Design a nice theme</span>
-                        <!-- Emphasis label -->
-                        <small class="badge badge-primary">ACTIVE</small>
-                        <br>
-                        <span style="font-size: 12px;"> - 20 Dec 2021 </span>
-                      </div>
-                      <div class="tools" style="margin-top: 15px;">
-                        <i class="fas fa-edit"></i>
-                        <i class="far fa-trash-alt"></i>
-                      </div>
-                    </div>
-                  </li><li>
-                    <div class="row">
-                      <div style="margin-top: 15px;">
-                        <span class="handle">
-                          <i class="fas fa-ellipsis-v"></i>
-                          <i class="fas fa-ellipsis-v"></i>
-                        </span>
-                        <!-- checkbox -->
-                        <div  class="icheck-primary d-inline ml-2">
-                          <input type="checkbox" value="" name="todo1" id="todoCheck4">
-                          <label for="todoCheck4"></label>
-                        </div>
-                      </div>
-                      <!-- todo text -->
-                      <div class="col-sm-10">
-                        <span class="text">Design a nice theme</span>
-                        <!-- Emphasis label -->
-                        <small class="badge badge-primary">ACTIVE</small>
-                        <br>
-                        <span style="font-size: 12px;"> - 20 Dec 2021 </span>
-                      </div>
-                      <div class="tools" style="margin-top: 15px;">
-                        <i class="fas fa-edit"></i>
-                        <i class="far fa-trash-alt"></i>
-                      </div>
-                    </div>
-                  </li><li>
-                    <div class="row">
-                      <div style="margin-top: 15px;">
-                        <span class="handle">
-                          <i class="fas fa-ellipsis-v"></i>
-                          <i class="fas fa-ellipsis-v"></i>
-                        </span>
-                        <!-- checkbox -->
-                        <div  class="icheck-primary d-inline ml-2">
-                          <input type="checkbox" value="" name="todo1" id="todoCheck5">
-                          <label for="todoCheck5"></label>
-                        </div>
-                      </div>
-                      <!-- todo text -->
-                      <div class="col-sm-10">
-                        <span class="text">Design a nice theme</span>
-                        <!-- Emphasis label -->
-                        <small class="badge badge-primary">ACTIVE</small>
-                        <br>
-                        <span style="font-size: 12px;"> - 20 Dec 2021 </span>
-                      </div>
-                      <div class="tools" style="margin-top: 15px;">
-                        <i class="fas fa-edit"></i>
-                        <i class="far fa-trash-alt"></i>
-                      </div>
-                    </div>
-                  </li>
+                @endforeach
+                @endif
                 </ul>
               </div>
               <!-- /.card-body -->
